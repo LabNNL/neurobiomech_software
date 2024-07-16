@@ -1,6 +1,6 @@
 # Stimwalker - Stimulating the rehabilitation
 
-`Stimwalker` is a piece of software designed to help clinicians during physical rehab using functional electrical stimulation.
+`Stimwalker` is a piece of software designed to help clinicians and researche during using transcranial magnetic stimulation as well as functional electrical stimulation.
 
 ## Status
 | Type | Status |
