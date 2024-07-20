@@ -115,10 +115,10 @@ If you use `Stimwalker`, we would be grateful if you could cite it as follows:
 @misc{cherniStimwalker2021,
   title = {The Stimwalker: Stimulating the rehabilitation},
   shorttitle = {Stimwalker},
-  author = {Michaud, Benjamin and Cherni, Yosra},
-  date = {2024-01-01},
-  url = {https://github.com/cr-crme/stimwalker},
-  urldate = {2024-01-01},
+  author = {Michaud, Benjamin; Hugo, Dumoulin and Cherni, Yosra},
+  date = {2024-06-01},
+  url = {https://github.com/LabNNL/neurobiomech_software},
+  urldate = {2024-07-01},
   langid = {english}
 }
 ```
