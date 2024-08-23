@@ -83,7 +83,6 @@ list(APPEND STIMWALKER_MODULE_NAMES "${DEVICES_MODULE_NAME}")
 target_link_libraries(${STIMWALKER_NAME}
     "${STIMWALKER_MODULE_NAMES}"
     nlohmann_json::nlohmann_json
-    /usr/lib/x86_64-linux-gnu/libnidaqmx.so
 )
 
 # install target

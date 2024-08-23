@@ -1,6 +1,5 @@
 #include "Devices/NidaqDevice.h"
 
-#include "NIDAQmx.h"
 #include "Devices/Generic/Exceptions.h"
 #include "Devices/Data/CollectorData.h"
 
@@ -14,7 +13,6 @@ NidaqDevice::NidaqDevice(
                      m_isConnected(false),
                      m_isRecording(false)
 {
-    taskHandle = 0;
 }
 
 NidaqDevice::~NidaqDevice()
@@ -49,44 +47,9 @@ void NidaqDevice::connect()
     m_isConnected = true;
 }
 
-inline void handleError(int err)
-{
-    if (err == 0)
-        return;
-
-    char error[1024];
-    DAQmxGetErrorString(err, error, 1024);
-    std::cout << error << std::endl;
-}
-
 void NidaqDevice::connectInternal()
 {
-    TaskHandle taskHandle = 0;
-    int32 error = 0;
-    char errBuff[2048] = {'\0'};
-
-    error = DAQmxCreateTask("", &taskHandle);
-    if (error)
-        goto Error;
-
-    error = DAQmxCreateAIVoltageChan(taskHandle, "deviceName", "", DAQmx_Val_Cfg_Default, -10.0, 10.0, DAQmx_Val_Volts, NULL);
-    if (error)
-        goto Error;
-
-    error = DAQmxStartTask(taskHandle);
-    if (error)
-        goto Error;
-
-    return;
-
-Error:
-    if (taskHandle != 0)
-    {
-        DAQmxStopTask(taskHandle);
-        DAQmxClearTask(taskHandle);
-    }
-    DAQmxGetExtendedErrorInfo(errBuff, 2048);
-    throw std::runtime_error(errBuff);
+    // TODO: Implement this method
 }
 
 void NidaqDevice::disconnect()
@@ -108,12 +71,7 @@ void NidaqDevice::disconnect()
 
 void NidaqDevice::disconnectInternal()
 {
-    if (taskHandle != 0)
-    {
-        DAQmxStopTask(taskHandle);
-        DAQmxClearTask(taskHandle);
-        taskHandle = 0;
-    }
+    // TODO: Implement this method
 }
 
 void NidaqDevice::dispose()
@@ -161,23 +119,7 @@ void NidaqDevice::startRecording()
 
 void NidaqDevice::startRecordingInternal()
 {
-    int32 error = 0;
-
-    error = DAQmxCfgSampClkTiming(taskHandle, "", 1000.0, DAQmx_Val_Rising, DAQmx_Val_ContSamps, 1000);
-    if (error)
-    {
-        std::cerr << "Error configuring sample clock: " << error << std::endl;
-        DAQmxClearTask(taskHandle);
-        return;
-    }
-
-    error = DAQmxStartTask(taskHandle);
-    if (error)
-    {
-        std::cerr << "Error starting task: " << error << std::endl;
-        DAQmxClearTask(taskHandle);
-        return;
-    }
+    // TODO: Implement this method
 }
 
 void NidaqDevice::stopRecording()
@@ -195,19 +137,7 @@ void NidaqDevice::stopRecording()
 
 void NidaqDevice::stopRecordingInternal()
 {
-    if (taskHandle != 0)
-    {
-        int32 error = DAQmxStopTask(taskHandle);
-        if (error != 0)
-        {
-            char errorString[2048];
-            DAQmxGetErrorString(error, errorString, 1024);
-            std::cout << errorString << std::endl;
-        }
-
-        DAQmxClearTask(taskHandle);
-        taskHandle = 0;
-    }
+    // TODO: Implement this method
 }
 
 int NidaqDevice::onNewData(std::function<void(const CollectorData &newData)> callback)

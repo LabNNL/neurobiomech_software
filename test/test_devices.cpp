@@ -10,27 +10,6 @@ using namespace STIMWALKER_NAMESPACE;
 
 // Start the tests
 
-class NidaqDeviceTest : public ::testing::Test
-{
-protected:
-    stimwalker::devices::NidaqDevice device;
-
-    NidaqDeviceTest() : device(0, 0)
-    { // Use appropriate values for your test
-        // Initialization code if needed
-    }
-
-    void SetUp() override
-    {
-        // Setup code if needed
-    }
-
-    void TearDown() override
-    {
-        // Cleanup code if needed
-    }
-};
-
 TEST(Nidaq, channels)
 {
     auto nidaq = devices::NidaqDeviceMock(4, 1000);
@@ -103,37 +82,4 @@ TEST(Nidaq, callback)
     ASSERT_EQ(callbackCalled, true);
 
     nidaq.dispose();
-}
-
-TEST_F(NidaqDeviceTest, ConnectInternal)
-{
-    // Simuler les conditions nécessaires avant l'appel
-    device.connectInternal();
-    // Vérifier l'état attendu ou le comportement après l'appel
-    // ASSERT_TRUE(condition) ou EXPECT_TRUE(condition) selon le cas
-}
-
-TEST_F(NidaqDeviceTest, DisconnectInternal)
-{
-    // Assurez-vous que l'appareil est connecté avant de tester la déconnexion
-    device.connectInternal();
-    device.disconnectInternal();
-    // Vérifier que la ressource est libérée ou que l'état est nettoyé
-}
-
-TEST_F(NidaqDeviceTest, StartRecordingInternal)
-{
-    device.connectInternal();
-    device.startRecordingInternal();
-    // Vérifier que l'enregistrement a démarré correctement
-    // Cela peut nécessiter de vérifier l'état interne ou un indicateur spécifique
-}
-
-TEST_F(NidaqDeviceTest, StopRecordingInternal)
-{
-    device.connectInternal();
-    device.startRecordingInternal();
-    device.stopRecordingInternal();
-    // Vérifier que l'enregistrement s'est arrêté correctement
-    // Comme pour startRecordingInternal, cela peut nécessiter de vérifier l'état interne
 }

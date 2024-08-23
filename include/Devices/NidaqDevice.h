@@ -6,7 +6,6 @@
 #include <mutex>
 #include <thread>
 #include <map>
-#include <NIDAQmx.h>
 
 #include "Devices/Generic/Device.h"
 #include "Devices/Generic/Collector.h"
@@ -86,8 +85,6 @@ namespace STIMWALKER_NAMESPACE::devices
         // Thread safe information while recording
         std::thread m_recordingThread; ///< Thread to simulate the recording
         std::mutex m_recordingMutex;   ///< Mutex to protect the recording state
-    private:
-        TaskHandle taskHandle = 0; ///< Task handle for the NI DAQ
     };
 
     class NidaqDeviceMock : public NidaqDevice
